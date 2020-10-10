@@ -11,16 +11,31 @@ one passing an AWS access key ID and secret access key.
 
 AWS accounts (or IAM roles) used with the ECS plugin require following permissions:
 
-- ec2:DescribeSubnets  
-- ec2:DescribeVpcs
-- iam:CreateServiceLinkedRole
-- iam:AttachRolePolicy
-- cloudformation:*
-- ecs:*
-- logs:*
-- servicediscovery:*
-- elasticloadbalancing:*
-
+```yml
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "manually",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:*",
+                "ecs:*",
+                "logs:*",
+                "cloudformation:*",
+                "servicediscovery:*",
+                "elasticloadbalancing:*",
+                "iam:CreateServiceLinkedRole",
+                "iam:AttachRolePolicy",
+                "iam:CreateRole",
+                "iam:PassRole",
+                "route53:CreateHostedZone"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
 
 ## Okta support
 
